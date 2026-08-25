@@ -1,10 +1,83 @@
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
-    <title>My Portfolio</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>신지웅 — Fullstack Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>안녕하세요.</h1>
-    <p>제 포트폴리오입니다.</p>
+
+  <div class="spotlight" id="spotlight"></div>
+  <div class="grain"></div>
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <nav class="dots" id="dotNav">
+    <a href="#hero" data-label="Home"><span>Home</span></a>
+    <a href="#about" data-label="About"><span>About</span></a>
+    <a href="#projects" data-label="Projects"><span>Projects</span></a>
+    <a href="#contact" data-label="Contact"><span>Contact</span></a>
+  </nav>
+
+  <main class="snap-wrap" id="snapWrap">
+  <section id="hero">
+    <p class="eyebrow reveal">Portfolio</p>
+    <h1 class="name reveal">신지웅</h1>
+    <p class="role reveal">Fullstack Developer</p>
+    <div class="scroll-hint reveal">SCROLL</div>
+  </section>
+
+  <section id="about">
+    <p class="tag reveal">About</p>
+    <h2 class="title reveal">자기소개</h2>
+    <p class="reveal">
+      여기에 <strong>자기소개 문구</strong>를 적어주세요. 어떤 분야에 관심이 있고,
+      어떤 방식으로 문제를 풀어가는 개발자인지 자유롭게 소개해보세요.
+      Fullstack 개발자로서 다뤄온 기술 스택이나 최근 관심사를 함께 적어도 좋습니다.
+    </p>
+  </section>
+
+  <section id="projects">
+    <p class="tag reveal">Projects</p>
+    <h2 class="title reveal">프로젝트</h2>
+    <div class="projects-grid">
+      <a href="#" class="card reveal">
+        <div class="num">01</div>
+        <h3>프로젝트 이름</h3>
+        <p>프로젝트에 대한 한두 줄 설명이 들어가는 자리입니다. 어떤 문제를 해결했는지 적어보세요.</p>
+        <div class="tags"><span>React</span><span>Node.js</span></div>
+      </a>
+      <a href="#" class="card reveal">
+        <div class="num">02</div>
+        <h3>프로젝트 이름</h3>
+        <p>프로젝트에 대한 한두 줄 설명이 들어가는 자리입니다. 어떤 문제를 해결했는지 적어보세요.</p>
+        <div class="tags"><span>TypeScript</span><span>PostgreSQL</span></div>
+      </a>
+      <a href="#" class="card reveal">
+        <div class="num">03</div>
+        <h3>프로젝트 이름</h3>
+        <p>프로젝트에 대한 한두 줄 설명이 들어가는 자리입니다. 어떤 문제를 해결했는지 적어보세요.</p>
+        <div class="tags"><span>Next.js</span><span>AWS</span></div>
+      </a>
+    </div>
+  </section>
+
+  <section id="contact">
+    <p class="tag reveal">Contact</p>
+    <h2 class="title reveal">연락처</h2>
+    <div class="links">
+      <a class="big-link reveal" href="mailto:email@example.com">email@example.com</a>
+      <a class="big-link reveal" href="https://github.com/wildmozzi" target="_blank" rel="noopener">GitHub</a>
+      <a class="big-link reveal" href="#" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+    <footer class="reveal">&copy; 2026 신지웅. Built with plain HTML/CSS/JS.</footer>
+  </section>
+  </main>
+
+<script src="script.js" defer></script>
 </body>
 </html>
