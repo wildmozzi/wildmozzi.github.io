@@ -8,6 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<script src="carousel.js" defer></script>
 </head>
 <body class="detail-body">
 
@@ -33,23 +34,39 @@
       </div>
     </header>
 
-    <!-- 스크린샷: 아래 .shot 자리에 실제 캡처 이미지를 넣으면 됩니다.
-         <div class="shot"></div>  →  <img class="shot" src="images/p1-1.png" alt="합주 화면"> -->
+    <!-- 스크린샷 캐러셀: 한 장씩 보여주고 아래 점으로 이동/자동재생.
+         각 슬라이드의 <div class="shot"></div>를
+         <img class="shot" src="images/p1-1.png" alt="..."> 로 바꾸면 실제 사진이 들어갑니다. -->
     <div class="detail-section">
       <h2>화면</h2>
-      <div class="shot-grid">
-        <div>
-          <div class="shot"></div>
-          <p class="shot-caption">합주 룸 — 참가자별 오디오 채널</p>
+      <div class="carousel" data-carousel>
+        <button class="carousel-arrow prev" aria-label="이전 사진">&#8249;</button>
+        <div class="carousel-viewport">
+          <div class="carousel-track">
+            <div class="carousel-slide">
+              <img class="shot" src="images/project-1/합주실_스크린샷.png" alt="합주실_스크린샷">
+              <p class="shot-caption">합주 룸 — 참가자별 오디오 채널</p>
+            </div>
+            <div class="carousel-slide">
+              <img class="shot" src="images/project-1/음원분리_스크린샷.png" alt="음원분리_스크린샷">
+              <p class="shot-caption">AI 음원 분리(Demucs) 세션 선택 화면</p>
+            </div>
+            <div class="carousel-slide">
+              <img class="shot" src="images/project-1/구독페이지_스크린샷.png" alt="구독페이지_스크린샷">
+              <p class="shot-caption">결제(구독) 페이지</p>
+            </div>
+            <div class="carousel-slide">
+              <img class="shot" src="images/project-1/커뮤니티_스크린샷.png" alt="커뮤니티_스크린샷">
+              <p class="shot-caption">커뮤니티 게시판</p>
+            </div>
+            <div class="carousel-slide">
+              <img class="shot" src="images/project-1/악보인식_스크린샷.png" alt="악보인식_스크린샷">
+              <p class="shot-caption">악보 인식(OMR) 결과 화면</p>
+            </div>
+          </div>
         </div>
-        <div>
-          <div class="shot"></div>
-          <p class="shot-caption">AI 음원 분리(Demucs) 결과 화면</p>
-        </div>
-        <div>
-          <div class="shot"></div>
-          <p class="shot-caption">결제(구독) 페이지</p>
-        </div>
+        <button class="carousel-arrow next" aria-label="다음 사진">&#8250;</button>
+        <div class="carousel-dots"></div>
       </div>
     </div>
 
@@ -59,60 +76,55 @@
     <div class="detail-section">
       <h2>아키텍처</h2>
       <div class="diagram has-svg">
-        <svg viewBox="0 0 760 320" xmlns="http://www.w3.org/2000/svg">
+        <svg viewBox="0 0 760 300" xmlns="http://www.w3.org/2000/svg">
           <rect class="box accent" x="20" y="30" width="150" height="64" rx="8"/>
           <text class="box-label" x="95" y="58" text-anchor="middle">Client A</text>
           <text class="box-sub" x="95" y="79" text-anchor="middle">React (브라우저)</text>
 
-          <rect class="box accent" x="20" y="220" width="150" height="64" rx="8"/>
-          <text class="box-label" x="95" y="248" text-anchor="middle">Client B</text>
-          <text class="box-sub" x="95" y="269" text-anchor="middle">React (브라우저)</text>
+          <rect class="box accent" x="20" y="200" width="150" height="64" rx="8"/>
+          <text class="box-label" x="95" y="228" text-anchor="middle">Client B</text>
+          <text class="box-sub" x="95" y="249" text-anchor="middle">React (브라우저)</text>
 
-          <rect class="box" x="300" y="30" width="180" height="64" rx="8"/>
-          <text class="box-label" x="390" y="58" text-anchor="middle">Signaling Server</text>
-          <text class="box-sub" x="390" y="79" text-anchor="middle">WebSocket</text>
+          <rect class="box" x="300" y="90" width="180" height="80" rx="8"/>
+          <text class="box-label" x="390" y="118" text-anchor="middle">Node.js 서버</text>
+          <text class="box-sub" x="390" y="137" text-anchor="middle">Express + WebSocket</text>
+          <text class="box-sub" x="390" y="153" text-anchor="middle">(단일 프로세스)</text>
 
-          <rect class="box" x="300" y="128" width="180" height="64" rx="8"/>
-          <text class="box-label" x="390" y="156" text-anchor="middle">Express Server</text>
-          <text class="box-sub" x="390" y="177" text-anchor="middle">REST API</text>
+          <rect class="box" x="590" y="10" width="150" height="64" rx="8"/>
+          <text class="box-label" x="665" y="38" text-anchor="middle">Supabase</text>
+          <text class="box-sub" x="665" y="59" text-anchor="middle">DB · Storage</text>
 
-          <rect class="box" x="590" y="30" width="150" height="64" rx="8"/>
-          <text class="box-label" x="665" y="58" text-anchor="middle">Supabase</text>
-          <text class="box-sub" x="665" y="79" text-anchor="middle">DB · Storage</text>
-
-          <rect class="box" x="590" y="128" width="150" height="64" rx="8"/>
-          <text class="box-label" x="665" y="156" text-anchor="middle">Demucs</text>
-          <text class="box-sub" x="665" y="177" text-anchor="middle">음원분리</text>
+          <rect class="box" x="590" y="118" width="150" height="64" rx="8"/>
+          <text class="box-label" x="665" y="146" text-anchor="middle">Demucs</text>
+          <text class="box-sub" x="665" y="167" text-anchor="middle">음원분리</text>
 
           <rect class="box" x="590" y="226" width="150" height="64" rx="8"/>
           <text class="box-label" x="665" y="254" text-anchor="middle">Toss Payments</text>
           <text class="box-sub" x="665" y="275" text-anchor="middle">결제 승인 API</text>
 
-          <!-- Client A/B <-> Signaling: SDP/ICE 교환 -->
-          <path class="arrow" d="M170,62 L300,62"/>
-          <polygon class="arrowhead" points="300,62 288,56 288,68"/>
-          <path class="arrow" d="M170,252 L250,252 L250,62 L288,62"/>
-          <polygon class="arrowhead" points="288,62 276,56 276,68"/>
+          <!-- Client A/B <-> Node.js 서버: SDP/ICE 교환 + REST 요청 모두 같은 서버가 처리 -->
+          <path class="arrow" d="M170,62 L260,62 L260,120 L300,120"/>
+          <polygon class="arrowhead" points="300,120 288,114 288,126"/>
+          <path class="arrow" d="M170,232 L260,232 L260,140 L300,140"/>
+          <polygon class="arrowhead" points="300,140 288,134 288,146"/>
+          <text class="flow-label" x="180" y="100" text-anchor="start">SDP / ICE 교환</text>
+          <text class="flow-label" x="180" y="115" text-anchor="start">+ REST 요청</text>
 
           <!-- Client A <-> Client B: WebRTC P2P (highlight) -->
-          <path class="arrow hi" d="M95,94 L95,220"/>
-          <polygon class="arrowhead hi" points="95,220 89,206 101,206"/>
+          <path class="arrow hi" d="M95,94 L95,200"/>
+          <polygon class="arrowhead hi" points="95,200 89,186 101,186"/>
           <polygon class="arrowhead hi" points="95,94 89,108 101,108"/>
-          <text class="flow-label" x="108" y="150" text-anchor="start">WebRTC P2P</text>
-          <text class="flow-label" x="108" y="165" text-anchor="start">오디오 직접 전송</text>
+          <text class="flow-label" x="108" y="140" text-anchor="start">WebRTC P2P</text>
+          <text class="flow-label" x="108" y="155" text-anchor="start">오디오 직접 전송</text>
 
-          <!-- Signaling -> Express -->
-          <path class="arrow" d="M390,94 L390,124"/>
-          <polygon class="arrowhead" points="390,124 384,112 396,112"/>
-
-          <!-- Express -> Supabase / Demucs / Toss (병렬, 개별 연동) -->
-          <path class="arrow" d="M480,148 L590,62"/>
-          <polygon class="arrowhead" points="590,62 578,60 582,71"/>
-          <path class="arrow" d="M480,160 L590,160"/>
-          <polygon class="arrowhead" points="590,160 578,154 578,166"/>
-          <path class="arrow" d="M480,172 L590,258"/>
-          <polygon class="arrowhead" points="590,258 579,254 583,265"/>
-          <text class="flow-label" x="490" y="205" text-anchor="start">개별 연동</text>
+          <!-- Node.js 서버 -> Supabase / Demucs / Toss (병렬, 개별 연동) -->
+          <path class="arrow" d="M480,110 L590,42"/>
+          <polygon class="arrowhead" points="590,42 578,40 582,51"/>
+          <path class="arrow" d="M480,140 L590,150"/>
+          <polygon class="arrowhead" points="590,150 578,144 578,156"/>
+          <path class="arrow" d="M480,162 L590,250"/>
+          <polygon class="arrowhead" points="590,250 579,246 583,257"/>
+          <text class="flow-label" x="490" y="190" text-anchor="start">개별 연동</text>
         </svg>
       </div>
     </div>

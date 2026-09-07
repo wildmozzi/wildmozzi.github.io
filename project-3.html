@@ -8,6 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<script src="carousel.js" defer></script>
 </head>
 <body class="detail-body">
 
@@ -36,19 +37,34 @@
 
     <div class="detail-section">
       <h2>화면</h2>
-      <div class="shot-grid">
-        <div>
-          <div class="shot"></div>
-          <p class="shot-caption">실시간 스켈레톤 인식 화면</p>
+      <div class="carousel" data-carousel>
+        <button class="carousel-arrow prev" aria-label="이전 사진">&#8249;</button>
+        <div class="carousel-viewport">
+          <div class="carousel-track">
+            <div class="carousel-slide">
+              <div class="shot"></div>
+              <p class="shot-caption">실시간 스켈레톤 인식 화면</p>
+            </div>
+            <div class="carousel-slide">
+              <div class="shot"></div>
+              <p class="shot-caption">운동 자세 점수 / 피드백 화면</p>
+            </div>
+            <div class="carousel-slide">
+              <div class="shot"></div>
+              <p class="shot-caption">AI 식단 추천 화면</p>
+            </div>
+            <div class="carousel-slide">
+              <div class="shot"></div>
+              <p class="shot-caption">운동 기록 히스토리</p>
+            </div>
+            <div class="carousel-slide">
+              <div class="shot"></div>
+              <p class="shot-caption">로그인 / 온보딩 화면</p>
+            </div>
+          </div>
         </div>
-        <div>
-          <div class="shot"></div>
-          <p class="shot-caption">운동 자세 점수 / 피드백 화면</p>
-        </div>
-        <div>
-          <div class="shot"></div>
-          <p class="shot-caption">AI 식단 추천 화면</p>
-        </div>
+        <button class="carousel-arrow next" aria-label="다음 사진">&#8250;</button>
+        <div class="carousel-dots"></div>
       </div>
     </div>
 

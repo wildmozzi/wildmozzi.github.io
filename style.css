@@ -203,11 +203,47 @@ footer{margin-top:4rem; font-size:.8rem; color:var(--fg-dim);}
 .detail-section p{color:var(--fg-dim); line-height:1.75; margin-bottom:1rem;}
 .detail-section p strong{color:var(--fg); font-weight:500;}
 
-/* screenshot gallery: swap each .shot placeholder <div> for an <img class="shot">
-   later — sizing/spacing stays identical either way */
-.shot-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:1rem; margin-top:1.5rem;}
+/* screenshot carousel: one photo at a time, dots below to jump between them.
+   Swap each placeholder <div class="shot"></div> for <img class="shot" src="...">
+   when real screenshots are ready — sizing stays the same either way. */
+.carousel{margin-top:1.5rem; position:relative;}
+.carousel-viewport{overflow:hidden; border-radius:10px; border:1px solid var(--line);}
+.carousel-track{display:flex; transition:transform .5s ease;}
+.carousel-slide{flex:0 0 100%; min-width:0;}
+.carousel-slide .shot{
+  width:100%; height:auto; display:block;
+  background:
+    linear-gradient(135deg, var(--bg-soft) 25%, transparent 25%) -10px 0/20px 20px,
+    linear-gradient(225deg, var(--bg-soft) 25%, transparent 25%) -10px 0/20px 20px,
+    linear-gradient(315deg, var(--bg-soft) 25%, #17171c 25%) 0px 0/20px 20px,
+    linear-gradient(45deg, var(--bg-soft) 25%, #17171c 25%) 0px 0/20px 20px;
+}
+div.carousel-slide .shot{aspect-ratio:16/10;} /* placeholder-only sizing */
+.carousel-slide .shot-caption{
+  font-size:.85rem; color:var(--fg-dim); text-align:center; padding:.9rem 1rem;
+}
+.carousel-arrow{
+  position:absolute; top:50%; transform:translateY(-50%); z-index:2;
+  width:38px; height:38px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  background:rgba(10,10,12,.6); border:1px solid var(--line); color:var(--fg);
+  font-size:1.2rem; line-height:1; cursor:pointer;
+  transition:background .2s, border-color .2s, color .2s;
+}
+.carousel-arrow:hover{background:rgba(10,10,12,.85); border-color:var(--accent); color:var(--accent);}
+.carousel-arrow.prev{left:12px;}
+.carousel-arrow.next{right:12px;}
+.carousel-dots{display:flex; justify-content:center; gap:.5rem; margin-top:1rem;}
+.carousel-dots button{
+  width:8px; height:8px; border-radius:50%; background:var(--line);
+  border:none; padding:0; cursor:pointer; transition:background .3s, width .3s;
+}
+.carousel-dots button.active{background:var(--accent); width:22px; border-radius:4px;}
+
+/* old grid layout, kept in case a project ever wants a plain grid instead */
+.shot-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(380px,1fr)); gap:1.2rem; margin-top:1.5rem;}
 .shot{
-  width:100%; aspect-ratio:16/10; border-radius:10px; object-fit:cover;
+  width:100%; height:auto; display:block; border-radius:10px;
   border:1px solid var(--line);
   background:
     linear-gradient(135deg, var(--bg-soft) 25%, transparent 25%) -10px 0/20px 20px,
@@ -215,6 +251,7 @@ footer{margin-top:4rem; font-size:.8rem; color:var(--fg-dim);}
     linear-gradient(315deg, var(--bg-soft) 25%, #17171c 25%) 0px 0/20px 20px,
     linear-gradient(45deg, var(--bg-soft) 25%, #17171c 25%) 0px 0/20px 20px;
 }
+div.shot{aspect-ratio:16/10;}
 .shot-caption{font-size:.8rem; color:var(--fg-dim); margin-top:.5rem;}
 
 /* architecture diagram: same placeholder trick, wider aspect ratio.

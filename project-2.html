@@ -8,6 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<script src="carousel.js" defer></script>
 </head>
 <body class="detail-body">
 
@@ -36,19 +37,34 @@
 
     <div class="detail-section">
       <h2>화면</h2>
-      <div class="shot-grid">
-        <div>
-          <div class="shot"></div>
-          <p class="shot-caption">상품 목록 / 카테고리 필터</p>
+      <div class="carousel" data-carousel>
+        <button class="carousel-arrow prev" aria-label="이전 사진">&#8249;</button>
+        <div class="carousel-viewport">
+          <div class="carousel-track">
+            <div class="carousel-slide">
+              <div class="shot"></div>
+              <p class="shot-caption">상품 목록 / 카테고리 필터</p>
+            </div>
+            <div class="carousel-slide">
+              <div class="shot"></div>
+              <p class="shot-caption">상품 상세 페이지</p>
+            </div>
+            <div class="carousel-slide">
+              <div class="shot"></div>
+              <p class="shot-caption">장바구니 / 결제 페이지</p>
+            </div>
+            <div class="carousel-slide">
+              <div class="shot"></div>
+              <p class="shot-caption">본사 관리자 — 입점사 통계</p>
+            </div>
+            <div class="carousel-slide">
+              <div class="shot"></div>
+              <p class="shot-caption">입점사 관리자 — 상품 등록</p>
+            </div>
+          </div>
         </div>
-        <div>
-          <div class="shot"></div>
-          <p class="shot-caption">장바구니 / 결제 페이지</p>
-        </div>
-        <div>
-          <div class="shot"></div>
-          <p class="shot-caption">본사 관리자 — 입점사 통계</p>
-        </div>
+        <button class="carousel-arrow next" aria-label="다음 사진">&#8250;</button>
+        <div class="carousel-dots"></div>
       </div>
     </div>
 
