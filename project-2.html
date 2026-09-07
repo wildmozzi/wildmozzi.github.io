@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>백화점 쇼핑몰 웹 — 신지웅</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="detail-body">
+
+  <div class="detail-wrap">
+    <a href="index.html#projects" class="back-link">&larr; 프로젝트 목록으로</a>
+
+    <header class="detail-hero">
+      <div class="num">02 / Project</div>
+      <h1>백화점 쇼핑몰 웹</h1>
+      <p class="summary">
+        회원가입부터 상품 조회, 장바구니, 결제, 관리자 재고 관리까지
+        이커머스 전체 흐름을 구현한 풀스택 프로젝트입니다. 3명이 함께
+        만들었고, 저는 전체 아키텍처 설계와 DB 스키마, 결제 연동을
+        주로 맡았습니다.
+      </p>
+      <div class="tags">
+        <span>React</span><span>TypeScript</span><span>Tailwind CSS</span>
+        <span>Supabase</span><span>Toss Payments</span>
+      </div>
+      <div class="meta">
+        <div><strong>기간</strong>2025.08</div>
+        <div><strong>인원</strong>3인 팀</div>
+        <div><strong>담당</strong>아키텍처 설계, DB 스키마, 결제 연동</div>
+      </div>
+    </header>
+
+    <section class="detail-section">
+      <h2>화면</h2>
+      <div class="shot-grid">
+        <div>
+          <div class="shot"></div>
+          <p class="shot-caption">상품 목록 / 카테고리 필터</p>
+        </div>
+        <div>
+          <div class="shot"></div>
+          <p class="shot-caption">장바구니 / 결제 페이지</p>
+        </div>
+        <div>
+          <div class="shot"></div>
+          <p class="shot-caption">본사 관리자 — 입점사 통계</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="detail-section">
+      <h2>아키텍처</h2>
+      <div class="diagram">
+        다이어그램 자리 — 대/중/소 카테고리 정규화 구조, 본사/입점사 권한 분리(Supabase Auth role),
+        장바구니 비정규화(스냅샷 저장) 구조를 도식화해서 넣을 예정
+      </div>
+    </section>
+
+    <section class="detail-section">
+      <h2>문제와 해결</h2>
+      <div class="problem-solution">
+        <div class="ps-row">
+          <div>
+            <h3>Problem</h3>
+            <p>
+              카테고리명이 바뀔 때마다 관련된 모든 상품 데이터를 찾아
+              수정해야 하는 구조는 유지보수가 어려웠습니다.
+            </p>
+          </div>
+          <div>
+            <h3>Solution</h3>
+            <p>
+              대/중/소 3단계 카테고리를 각각 테이블로 분리하고 상위
+              카테고리를 참조하도록 정규화해, 카테고리명 변경이 한 곳만
+              수정하면 되도록 설계했습니다.
+            </p>
+          </div>
+        </div>
+        <div class="ps-row">
+          <div>
+            <h3>Problem</h3>
+            <p>
+              장바구니에 상품ID만 저장하면, 담아둔 사이에 가격이 바뀌었을 때
+              사용자가 혼란을 겪을 수 있었습니다.
+            </p>
+          </div>
+          <div>
+            <h3>Solution</h3>
+            <p>
+              장바구니 테이블은 의도적으로 비정규화해 담을 당시의 상품명·
+              가격을 스냅샷으로 저장하고, 자주 조회되는 화면인 만큼 매번
+              JOIN하지 않도록 조회 성능도 함께 고려했습니다.
+            </p>
+          </div>
+        </div>
+        <div class="ps-row">
+          <div>
+            <h3>Problem</h3>
+            <p>
+              백화점 특성상 본사와 입점 브랜드가 각각 다른 권한으로
+              시스템에 접근할 수 있어야 했습니다.
+            </p>
+          </div>
+          <div>
+            <h3>Solution</h3>
+            <p>
+              Supabase Auth의 사용자 메타데이터에 role 값을 저장해 본사·
+              입점사 관리자를 구분하고, 본사는 전체 통계와 상품 승인,
+              입점사는 본인 브랜드 데이터만 접근하도록 권한을 분리했습니다.
+            </p>
+          </div>
+        </div>
+        <div class="ps-row">
+          <div>
+            <h3>Problem</h3>
+            <p>
+              주문이 취소되거나 완료될 때 재고가 정확히 반영되지 않으면
+              품절 상품이 계속 노출되거나 반대의 문제가 생길 수 있었습니다.
+            </p>
+          </div>
+          <div>
+            <h3>Solution</h3>
+            <p>
+              주문 상태가 바뀔 때마다 재고를 함께 갱신하고, 재고가 0이
+              되면 판매 상태를 자동으로 품절로 전환하도록 구현했습니다.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="detail-links">
+      <a href="https://github.com/Pink-Princesses-and-Exception-Busters/Department-Store" target="_blank" rel="noopener">GitHub 저장소 →</a>
+    </div>
+  </div>
+
+</body>
+</html>

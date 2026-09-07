@@ -17,6 +17,9 @@ body{
   font-family:'Inter', sans-serif;
   cursor:none;
 }
+/* links/cards have a browser-default pointer cursor of their own, which
+   otherwise wins over the inherited body cursor */
+a, .card{cursor:inherit;}
 .snap-wrap{
   height:100vh;
   overflow-y:scroll;
@@ -112,12 +115,26 @@ h2.title{font-size:clamp(2rem,5vw,3rem); font-weight:700; margin-bottom:2.5rem; 
 /* projects */
 .projects-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:1.2rem; width:100%;}
 .card{
-  border:1px solid var(--line); border-radius:14px; padding:1.8rem;
+  border:1px solid var(--line); border-radius:14px;
   background:var(--bg-soft); text-decoration:none; color:inherit;
   transition:transform .3s ease, border-color .3s ease;
-  display:block;
+  display:block; overflow:hidden;
 }
 .card:hover{transform:translateY(-6px); border-color:var(--accent-dim);}
+
+/* thumbnail placeholder: fixed 16:9 box so layout doesn't jump once a real
+   screenshot is dropped in — just swap the <div class="card-thumb"> for an
+   <img class="card-thumb" src="..."> later, same class handles both */
+.card-thumb{
+  width:100%; aspect-ratio:16/9; display:block; object-fit:cover;
+  background:
+    linear-gradient(135deg, var(--bg-soft) 25%, transparent 25%) -10px 0/20px 20px,
+    linear-gradient(225deg, var(--bg-soft) 25%, transparent 25%) -10px 0/20px 20px,
+    linear-gradient(315deg, var(--bg-soft) 25%, transparent 25%) 0px 0/20px 20px,
+    linear-gradient(45deg, var(--bg-soft) 25%, #17171c 25%) 0px 0/20px 20px;
+  border-bottom:1px solid var(--line);
+}
+.card-body{padding:1.8rem;}
 .card .num{color:var(--accent); font-family:'Space Grotesk',sans-serif; font-size:.85rem;}
 .card h3{margin:.8rem 0 .6rem; font-size:1.25rem;}
 .card p{color:var(--fg-dim); font-size:.92rem; line-height:1.55;}
@@ -141,3 +158,100 @@ h2.title{font-size:clamp(2rem,5vw,3rem); font-weight:700; margin-bottom:2.5rem; 
 #contact a.big-link:hover::after{width:100%;}
 #contact a.big-link:hover{color:var(--accent);}
 footer{margin-top:4rem; font-size:.8rem; color:var(--fg-dim);}
+
+/* ============================================
+   PROJECT DETAIL PAGES (project-*.html)
+   Plain top-to-bottom scroll — deliberately NOT using .snap-wrap/.reveal,
+   since a long detail page with galleries/diagrams reads better scrolling
+   normally than snapping section-by-section like the one-page home does.
+   ============================================ */
+.detail-body{overflow-y:auto; cursor:auto;}
+.detail-body .cursor-dot,.detail-body .cursor-ring,.detail-body nav.dots{display:none;}
+
+.detail-wrap{max-width:1040px; margin:0 auto; padding:8vh 6vw 10vh;}
+
+.back-link{
+  display:inline-flex; align-items:center; gap:.5rem;
+  color:var(--fg-dim); text-decoration:none; font-size:.85rem;
+  letter-spacing:.03em; margin-bottom:3rem;
+}
+.back-link:hover{color:var(--accent);}
+
+.detail-hero .num{color:var(--accent); font-family:'Space Grotesk',sans-serif; font-size:.9rem;}
+.detail-hero h1{
+  font-family:'Space Grotesk',sans-serif; font-weight:700;
+  font-size:clamp(2rem,5vw,3.2rem); margin:.6rem 0 1rem; letter-spacing:-.01em;
+}
+.detail-hero .summary{color:var(--fg-dim); font-size:1.1rem; line-height:1.7; max-width:640px;}
+.detail-hero .tags{margin-top:1.4rem; display:flex; gap:.5rem; flex-wrap:wrap;}
+.detail-hero .tags span{
+  font-size:.75rem; color:var(--fg-dim); border:1px solid var(--line);
+  padding:.25rem .7rem; border-radius:999px;
+}
+.detail-hero .meta{
+  margin-top:2rem; display:flex; gap:2.5rem; flex-wrap:wrap;
+  font-size:.85rem; color:var(--fg-dim); border-top:1px solid var(--line);
+  padding-top:1.4rem;
+}
+.detail-hero .meta strong{display:block; color:var(--fg); font-weight:500; margin-bottom:.2rem;}
+
+.detail-section{margin-top:5rem;}
+.detail-section h2{
+  font-family:'Space Grotesk',sans-serif; font-size:1.5rem; font-weight:700;
+  margin-bottom:1.4rem;
+}
+.detail-section p{color:var(--fg-dim); line-height:1.75; margin-bottom:1rem;}
+.detail-section p strong{color:var(--fg); font-weight:500;}
+
+/* screenshot gallery: swap each .shot placeholder <div> for an <img class="shot">
+   later — sizing/spacing stays identical either way */
+.shot-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:1rem; margin-top:1.5rem;}
+.shot{
+  width:100%; aspect-ratio:16/10; border-radius:10px; object-fit:cover;
+  border:1px solid var(--line);
+  background:
+    linear-gradient(135deg, var(--bg-soft) 25%, transparent 25%) -10px 0/20px 20px,
+    linear-gradient(225deg, var(--bg-soft) 25%, transparent 25%) -10px 0/20px 20px,
+    linear-gradient(315deg, var(--bg-soft) 25%, #17171c 25%) 0px 0/20px 20px,
+    linear-gradient(45deg, var(--bg-soft) 25%, #17171c 25%) 0px 0/20px 20px;
+}
+.shot-caption{font-size:.8rem; color:var(--fg-dim); margin-top:.5rem;}
+
+/* architecture diagram: same placeholder trick, wider aspect ratio.
+   Swap the .diagram div's background for an <img class="diagram" src="..."> ,
+   or replace its contents with an inline <svg> when the real one is ready. */
+.diagram{
+  width:100%; min-height:280px; border-radius:12px; margin-top:1.5rem;
+  border:1px dashed var(--line); background:var(--bg-soft);
+  display:flex; align-items:center; justify-content:center;
+  color:var(--fg-dim); font-size:.85rem; text-align:center; padding:2rem;
+}
+
+.problem-solution{margin-top:1.5rem; display:flex; flex-direction:column; gap:1.2rem;}
+.ps-row{
+  display:grid; grid-template-columns:1fr 1fr;
+  border:1px solid var(--line); border-radius:12px;
+  background:var(--bg-soft); overflow:hidden;
+}
+.ps-row > div{padding:1.6rem 1.8rem;}
+.ps-row > div + div{border-left:1px solid var(--line);}
+@media (max-width:700px){
+  .ps-row{grid-template-columns:1fr;}
+  .ps-row > div + div{border-left:none; border-top:1px solid var(--line);}
+}
+.ps-row h3{
+  font-size:.8rem; letter-spacing:.08em; text-transform:uppercase;
+  color:var(--accent); margin-bottom:.8rem;
+}
+.ps-row p{margin-bottom:0;}
+
+.detail-links{
+  margin-top:5rem; padding-top:2.5rem; border-top:1px solid var(--line);
+  display:flex; gap:1.2rem; flex-wrap:wrap;
+}
+.detail-links a{
+  font-family:'Space Grotesk',sans-serif; font-size:1.1rem; color:var(--fg);
+  text-decoration:none; border:1px solid var(--line); border-radius:999px;
+  padding:.7rem 1.4rem; transition:border-color .2s, color .2s;
+}
+.detail-links a:hover{border-color:var(--accent); color:var(--accent);}

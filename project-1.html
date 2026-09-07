@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>실시간 합주 플랫폼 — 신지웅</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="detail-body">
+
+  <div class="detail-wrap">
+    <a href="index.html#projects" class="back-link">&larr; 프로젝트 목록으로</a>
+
+    <header class="detail-hero">
+      <div class="num">01 / Project</div>
+      <h1>실시간 합주 플랫폼</h1>
+      <p class="summary">
+        WebRTC 기반 P2P 오디오 스트리밍으로 여러 사용자가 온라인에서 함께
+        합주할 수 있는 서비스입니다. 3명이 함께 만들었고, 저는 실시간 통신
+        인프라와 오디오 처리, 결제 연동을 주로 맡았습니다.
+      </p>
+      <div class="tags">
+        <span>React</span><span>TypeScript</span><span>WebRTC</span>
+        <span>WebSocket</span><span>Express.js</span><span>Supabase</span>
+      </div>
+      <div class="meta">
+        <div><strong>기간</strong>2026.01</div>
+        <div><strong>인원</strong>3인 팀</div>
+        <div><strong>담당</strong>실시간 통신, 결제, DB 설계</div>
+      </div>
+    </header>
+
+    <!-- 스크린샷: 아래 .shot 자리에 실제 캡처 이미지를 넣으면 됩니다.
+         <div class="shot"></div>  →  <img class="shot" src="images/p1-1.png" alt="합주 화면"> -->
+    <section class="detail-section">
+      <h2>화면</h2>
+      <div class="shot-grid">
+        <div>
+          <div class="shot"></div>
+          <p class="shot-caption">합주 룸 — 참가자별 오디오 채널</p>
+        </div>
+        <div>
+          <div class="shot"></div>
+          <p class="shot-caption">AI 음원 분리(Demucs) 결과 화면</p>
+        </div>
+        <div>
+          <div class="shot"></div>
+          <p class="shot-caption">결제(구독) 페이지</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 아키텍처 다이어그램: .diagram 안의 텍스트를 지우고
+         <img class="diagram" src="images/p1-architecture.png"> 로 교체하거나,
+         draw.io/excalidraw로 그린 SVG를 그대로 붙여넣으면 됩니다. -->
+    <section class="detail-section">
+      <h2>아키텍처</h2>
+      <div class="diagram">
+        다이어그램 자리 — 클라이언트 ↔ WebSocket 시그널링 서버 ↔ WebRTC P2P Mesh,
+        Express 서버 ↔ Supabase(DB/Storage) ↔ Demucs(음원분리) 흐름을 도식화해서 넣을 예정
+      </div>
+    </section>
+
+    <section class="detail-section">
+      <h2>문제와 해결</h2>
+      <div class="problem-solution">
+        <div class="ps-row">
+          <div>
+            <h3>Problem</h3>
+            <p>
+              여러 명이 동시에 목소리를 주고받아야 하는 합주 특성상, 오디오
+              지연이 조금만 늘어나도 박자가 어긋나 연주가 불가능해졌습니다.
+            </p>
+          </div>
+          <div>
+            <h3>Solution</h3>
+            <p>
+              WebRTC의 SDP를 직접 수정해 Opus 오디오 패킷 전송 주기(ptime)를
+              기본 20ms에서 10ms로 줄이고, 스테레오·FEC·DTX처럼 지연을
+              늘릴 수 있는 옵션을 비활성화해 저지연 전송을 구현했습니다.
+            </p>
+          </div>
+        </div>
+        <div class="ps-row">
+          <div>
+            <h3>Problem</h3>
+            <p>
+              참가자가 늘어날수록 Mesh 구조 특성상 연결 수가 제곱으로
+              증가해 대규모 인원에는 한계가 있었습니다.
+            </p>
+          </div>
+          <div>
+            <h3>Solution</h3>
+            <p>
+              현재는 소규모 인원(밴드 단위)에 맞춰 Mesh로 구현했고, 인원이
+              늘어나는 경우 SFU(중계 서버) 구조로 전환이 필요하다는 걸
+              확인했습니다.
+            </p>
+          </div>
+        </div>
+        <div class="ps-row">
+          <div>
+            <h3>Problem</h3>
+            <p>
+              브라우저의 마이크 접근 API(getUserMedia)는 보안상 HTTPS
+              환경에서만 동작해, 로컬 개발 중에도 마이크 테스트가 막혔습니다.
+            </p>
+          </div>
+          <div>
+            <h3>Solution</h3>
+            <p>
+              자체 서명(self-signed) 인증서를 만들어 로컬 개발 서버도
+              HTTPS로 띄우도록 구성해, 개발 단계에서부터 실제 환경과
+              동일하게 마이크 기능을 테스트할 수 있도록 했습니다.
+            </p>
+          </div>
+        </div>
+        <div class="ps-row">
+          <div>
+            <h3>Problem</h3>
+            <p>
+              음원 분리(Demucs) 결과 파일이 계속 쌓이면 스토리지 공간을
+              불필요하게 차지하게 됩니다.
+            </p>
+          </div>
+          <div>
+            <h3>Solution</h3>
+            <p>
+              node-cron으로 주기적인 정리 작업을 만들어, 만료 시간이 지난
+              음원 분리 결과를 자동으로 스토리지에서 삭제하도록
+              구현했습니다.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="detail-links">
+      <a href="https://indigomuse.art" target="_blank" rel="noopener">배포 사이트 보기 →</a>
+      <a href="https://github.com/exception-busters/Band" target="_blank" rel="noopener">GitHub 저장소 →</a>
+    </div>
+  </div>
+
+</body>
+</html>

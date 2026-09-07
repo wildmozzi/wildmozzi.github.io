@@ -35,9 +35,15 @@
     <p class="tag reveal">About</p>
     <h2 class="title reveal">자기소개</h2>
     <p class="reveal">
-      여기에 <strong>자기소개 문구</strong>를 적어주세요. 어떤 분야에 관심이 있고,
-      어떤 방식으로 문제를 풀어가는 개발자인지 자유롭게 소개해보세요.
-      Fullstack 개발자로서 다뤄온 기술 스택이나 최근 관심사를 함께 적어도 좋습니다.
+      <strong>React</strong>와 <strong>Next.js</strong>로 화면을 만들고, <strong>Node.js</strong> 기반
+      <strong>REST API</strong>로 그 뒤를 받치는 걸 좋아합니다. <strong>TypeScript</strong>로 타입을
+      명확히 하면서, 프론트엔드부터 백엔드까지 하나의 흐름으로 다루는 걸 선호하는
+      Fullstack 개발자입니다.
+    </p>
+    <p class="reveal">
+      결제, 인증처럼 데이터를 정확하고 안전하게 다뤄야 하는 로직을 구현하며,
+      기능만큼이나 <strong>데이터 흐름과 보안</strong>을 함께 고려하는 개발에 관심을
+      갖게 되었습니다.
     </p>
   </section>
 
@@ -45,23 +51,32 @@
     <p class="tag reveal">Projects</p>
     <h2 class="title reveal">프로젝트</h2>
     <div class="projects-grid">
-      <a href="#" class="card reveal">
-        <div class="num">01</div>
-        <h3>프로젝트 이름</h3>
-        <p>프로젝트에 대한 한두 줄 설명이 들어가는 자리입니다. 어떤 문제를 해결했는지 적어보세요.</p>
-        <div class="tags"><span>React</span><span>Node.js</span></div>
+      <a href="project-1.html" class="card reveal">
+        <div class="card-thumb"></div>
+        <div class="card-body">
+          <div class="num">01</div>
+          <h3>실시간 합주 플랫폼</h3>
+          <p>WebRTC 기반 P2P 오디오 스트리밍으로 여러 사용자가 온라인에서 함께 합주할 수 있는 서비스입니다. 오디오 지연을 줄이기 위해 SDP를 직접 수정해 패킷 전송 주기를 20ms에서 10ms로 낮추고 불필요한 옵션을 비활성화했고, AI 음원 분리(Demucs)와 결제 시스템까지 구현했습니다.</p>
+          <div class="tags"><span>React</span><span>WebRTC</span><span>WebSocket</span></div>
+        </div>
       </a>
-      <a href="#" class="card reveal">
-        <div class="num">02</div>
-        <h3>프로젝트 이름</h3>
-        <p>프로젝트에 대한 한두 줄 설명이 들어가는 자리입니다. 어떤 문제를 해결했는지 적어보세요.</p>
-        <div class="tags"><span>TypeScript</span><span>PostgreSQL</span></div>
+      <a href="project-2.html" class="card reveal">
+        <div class="card-thumb"></div>
+        <div class="card-body">
+          <div class="num">02</div>
+          <h3>백화점 쇼핑몰 웹</h3>
+          <p>회원가입부터 상품 조회, 장바구니, 결제(Toss Payments), 관리자 재고 관리까지 이커머스 전체 흐름을 구현한 풀스택 프로젝트입니다. 카테고리를 3단계로 정규화해 설계하고, 본사·입점사 권한을 분리한 관리자 시스템까지 함께 구현했습니다.</p>
+          <div class="tags"><span>React</span><span>TypeScript</span><span>Supabase</span></div>
+        </div>
       </a>
-      <a href="#" class="card reveal">
-        <div class="num">03</div>
-        <h3>프로젝트 이름</h3>
-        <p>프로젝트에 대한 한두 줄 설명이 들어가는 자리입니다. 어떤 문제를 해결했는지 적어보세요.</p>
-        <div class="tags"><span>Next.js</span><span>AWS</span></div>
+      <a href="project-3.html" class="card reveal">
+        <div class="card-thumb"></div>
+        <div class="card-body">
+          <div class="num">03</div>
+          <h3>AI 자세 교정 앱</h3>
+          <p>Google ML Kit Pose Detection으로 카메라 영상에서 신체 33개 랜드마크를 추출해 운동 자세를 실시간으로 분석하는 Flutter 앱입니다. 관절 각도 오차를 구간별로 계산해 점수를 매기는 채점 알고리즘을 직접 설계했고, Supabase Edge Function으로 AI 식단 추천 기능도 구현했습니다.</p>
+          <div class="tags"><span>Flutter</span><span>ML Kit</span><span>Supabase</span></div>
+        </div>
       </a>
     </div>
   </section>

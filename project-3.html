@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 자세 교정 앱 — 신지웅</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="detail-body">
+
+  <div class="detail-wrap">
+    <a href="index.html#projects" class="back-link">&larr; 프로젝트 목록으로</a>
+
+    <header class="detail-hero">
+      <div class="num">03 / Project</div>
+      <h1>AI 자세 교정 앱</h1>
+      <p class="summary">
+        Google ML Kit Pose Detection으로 카메라 영상에서 신체 33개
+        랜드마크를 추출해 운동 자세를 실시간으로 분석하는 Flutter
+        앱입니다. 대학 졸업작품으로 3명이 함께 만들었고, 저는 팀장으로서
+        전체 기획과 자세 채점 알고리즘, 핵심 로직을 담당했습니다.
+      </p>
+      <div class="tags">
+        <span>Flutter</span><span>Dart</span><span>ML Kit</span>
+        <span>Riverpod</span><span>Supabase</span>
+      </div>
+      <div class="meta">
+        <div><strong>구분</strong>대학 졸업작품</div>
+        <div><strong>인원</strong>3인 팀 (팀장)</div>
+        <div><strong>담당</strong>자세 채점 알고리즘, 핵심 로직, 리팩터링</div>
+      </div>
+    </header>
+
+    <section class="detail-section">
+      <h2>화면</h2>
+      <div class="shot-grid">
+        <div>
+          <div class="shot"></div>
+          <p class="shot-caption">실시간 스켈레톤 인식 화면</p>
+        </div>
+        <div>
+          <div class="shot"></div>
+          <p class="shot-caption">운동 자세 점수 / 피드백 화면</p>
+        </div>
+        <div>
+          <div class="shot"></div>
+          <p class="shot-caption">AI 식단 추천 화면</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="detail-section">
+      <h2>아키텍처</h2>
+      <div class="diagram">
+        다이어그램 자리 — 카메라 → ML Kit Pose Detection → 관절 각도 계산 →
+        PoseScorer(구간별 채점) → 피드백 생성, Supabase Edge Function 기반
+        AI 식단 추천 흐름을 도식화해서 넣을 예정
+      </div>
+    </section>
+
+    <section class="detail-section">
+      <h2>문제와 해결</h2>
+      <div class="problem-solution">
+        <div class="ps-row">
+          <div>
+            <h3>Problem</h3>
+            <p>
+              단순히 "자세가 맞다/틀리다"로만 판정하면 사용자가 어디를
+              어떻게 고쳐야 하는지 알기 어려웠습니다.
+            </p>
+          </div>
+          <div>
+            <h3>Solution</h3>
+            <p>
+              관절별 각도 오차를 허용 오차의 50%/100%/150%/200% 구간으로
+              나눠 100점부터 선형으로 감점하는 채점 로직을 직접 설계해,
+              관절 단위로 구체적인 피드백을 줄 수 있도록 했습니다.
+            </p>
+          </div>
+        </div>
+        <div class="ps-row">
+          <div>
+            <h3>Problem</h3>
+            <p>
+              개발 중반, 팀원 간 데이터베이스 스키마를 사전 논의 없이 전면
+              수정하면서 팀원 간 의견 충돌과 데이터 불일치 문제가
+              발생했습니다.
+            </p>
+          </div>
+          <div>
+            <h3>Solution</h3>
+            <p>
+              팀장으로서 양쪽 입장을 조율해 갈등을 해소하고, 주말 시간을
+              들여 코드를 전면 리팩터링해 문제를 해결했습니다.
+            </p>
+          </div>
+        </div>
+        <div class="ps-row">
+          <div>
+            <h3>Problem</h3>
+            <p>
+              카메라로 인식한 관절 좌표가 프레임마다 미세하게 흔들려,
+              같은 자세를 취해도 각도 값이 불안정하게 튀는 문제가
+              있었습니다.
+            </p>
+          </div>
+          <div>
+            <h3>Solution</h3>
+            <p>
+              랜드마크와 각도 값에 스무딩(smoothing) 로직을 별도로 적용해
+              프레임 간 노이즈를 줄이고, 안정적인 자세 판정이 가능하도록
+              구현했습니다.
+            </p>
+          </div>
+        </div>
+        <div class="ps-row">
+          <div>
+            <h3>Problem</h3>
+            <p>
+              사용자마다 목표(체중감량, 근력강화 등)가 달라, 일반적인
+              식단표만으로는 개인화된 도움을 주기 어려웠습니다.
+            </p>
+          </div>
+          <div>
+            <h3>Solution</h3>
+            <p>
+              Supabase Edge Function으로 AI 기반 식단 추천 기능을 구현해,
+              사용자 프로필을 기반으로 맞춤 식단을 자동 생성하도록
+              했습니다.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="detail-links">
+      <a href="https://github.com/exception-busters/PT" target="_blank" rel="noopener">GitHub 저장소 →</a>
+    </div>
+  </div>
+
+</body>
+</html>
