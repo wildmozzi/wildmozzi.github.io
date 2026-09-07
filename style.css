@@ -195,7 +195,7 @@ footer{margin-top:4rem; font-size:.8rem; color:var(--fg-dim);}
 }
 .detail-hero .meta strong{display:block; color:var(--fg); font-weight:500; margin-bottom:.2rem;}
 
-.detail-section{margin-top:5rem;}
+.detail-section{margin-top:8rem;}
 .detail-section h2{
   font-family:'Space Grotesk',sans-serif; font-size:1.5rem; font-weight:700;
   margin-bottom:1.4rem;
@@ -221,11 +221,32 @@ footer{margin-top:4rem; font-size:.8rem; color:var(--fg-dim);}
    Swap the .diagram div's background for an <img class="diagram" src="..."> ,
    or replace its contents with an inline <svg> when the real one is ready. */
 .diagram{
-  width:100%; min-height:280px; border-radius:12px; margin-top:1.5rem;
+  width:100%; min-height:320px; border-radius:12px; margin-top:1.5rem;
   border:1px dashed var(--line); background:var(--bg-soft);
   display:flex; align-items:center; justify-content:center;
   color:var(--fg-dim); font-size:.85rem; text-align:center; padding:2rem;
 }
+.diagram.has-svg{
+  border-style:solid; padding:2.2rem 1.6rem; display:block;
+  overflow-x:auto; -webkit-overflow-scrolling:touch;
+}
+.diagram svg{width:100%; height:auto; display:block; margin:0 auto;}
+.diagram svg text{font-family:'Inter',sans-serif;}
+.diagram svg .box-label{font-size:16px; font-weight:700; fill:var(--fg);}
+.diagram svg .box-sub{font-size:12.5px; fill:var(--fg-dim);}
+.diagram svg .flow-label{font-size:11.5px; fill:var(--fg-dim); font-weight:500;}
+@media (max-width:700px){
+  /* below this width, shrinking the diagram to fit would make the text
+     illegible — instead give it a floor width and let just this box
+     scroll sideways, so desktop-quality legibility carries over to mobile */
+  .diagram svg{min-width:620px;}
+}
+.diagram svg .box{fill:var(--bg); stroke:var(--line); stroke-width:1.6;}
+.diagram svg .box.accent{stroke:var(--accent-dim); stroke-width:2;}
+.diagram svg line, .diagram svg path.arrow{stroke:var(--fg-dim); stroke-width:2; fill:none;}
+.diagram svg path.arrow.hi{stroke:var(--accent); stroke-width:2.6;}
+.diagram svg polygon.arrowhead{fill:var(--fg-dim);}
+.diagram svg polygon.arrowhead.hi{fill:var(--accent);}
 
 .problem-solution{margin-top:1.5rem; display:flex; flex-direction:column; gap:1.2rem;}
 .ps-row{

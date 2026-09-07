@@ -34,7 +34,7 @@
       </div>
     </header>
 
-    <section class="detail-section">
+    <div class="detail-section">
       <h2>화면</h2>
       <div class="shot-grid">
         <div>
@@ -50,18 +50,49 @@
           <p class="shot-caption">AI 식단 추천 화면</p>
         </div>
       </div>
-    </section>
+    </div>
 
-    <section class="detail-section">
+    <div class="detail-section">
       <h2>아키텍처</h2>
-      <div class="diagram">
-        다이어그램 자리 — 카메라 → ML Kit Pose Detection → 관절 각도 계산 →
-        PoseScorer(구간별 채점) → 피드백 생성, Supabase Edge Function 기반
-        AI 식단 추천 흐름을 도식화해서 넣을 예정
-      </div>
-    </section>
+      <div class="diagram has-svg">
+        <svg viewBox="0 0 760 260" xmlns="http://www.w3.org/2000/svg">
+          <rect class="box accent" x="15" y="90" width="120" height="56" rx="8"/>
+          <text class="box-label" x="75" y="114" text-anchor="middle">카메라</text>
+          <text class="box-sub" x="75" y="132" text-anchor="middle">실시간 영상</text>
 
-    <section class="detail-section">
+          <rect class="box" x="175" y="90" width="150" height="56" rx="8"/>
+          <text class="box-label" x="250" y="112" text-anchor="middle">ML Kit</text>
+          <text class="box-sub" x="250" y="130" text-anchor="middle">33개 랜드마크 추출</text>
+
+          <rect class="box" x="365" y="90" width="150" height="56" rx="8"/>
+          <text class="box-label" x="440" y="112" text-anchor="middle">각도 계산 + 스무딩</text>
+          <text class="box-sub" x="440" y="130" text-anchor="middle">프레임 노이즈 보정</text>
+
+          <rect class="box accent" x="555" y="90" width="150" height="56" rx="8"/>
+          <text class="box-label" x="630" y="114" text-anchor="middle">PoseScorer</text>
+          <text class="box-sub" x="630" y="132" text-anchor="middle">구간별 채점 로직</text>
+
+          <rect class="box" x="555" y="185" width="150" height="56" rx="8"/>
+          <text class="box-label" x="630" y="209" text-anchor="middle">피드백 UI</text>
+          <text class="box-sub" x="630" y="227" text-anchor="middle">점수 · 자세 교정</text>
+
+          <rect class="box" x="175" y="185" width="240" height="56" rx="8"/>
+          <text class="box-label" x="295" y="207" text-anchor="middle">Supabase Edge Function</text>
+          <text class="box-sub" x="295" y="225" text-anchor="middle">AI 식단 추천 (별도 흐름)</text>
+
+          <path class="arrow hi" d="M135,118 L175,118"/>
+          <polygon class="arrowhead hi" points="175,118 165,113 165,123"/>
+          <path class="arrow hi" d="M325,118 L365,118"/>
+          <polygon class="arrowhead hi" points="365,118 355,113 355,123"/>
+          <path class="arrow hi" d="M515,118 L555,118"/>
+          <polygon class="arrowhead hi" points="555,118 545,113 545,123"/>
+          <path class="arrow" d="M630,146 L630,185"/>
+          <polygon class="arrowhead" points="630,185 624,175 636,175"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="detail-section">
       <h2>문제와 해결</h2>
       <div class="problem-solution">
         <div class="ps-row">
@@ -134,7 +165,7 @@
           </div>
         </div>
       </div>
-    </section>
+    </div>
 
     <div class="detail-links">
       <a href="https://github.com/exception-busters/PT" target="_blank" rel="noopener">GitHub 저장소 →</a>

@@ -34,7 +34,7 @@
       </div>
     </header>
 
-    <section class="detail-section">
+    <div class="detail-section">
       <h2>화면</h2>
       <div class="shot-grid">
         <div>
@@ -50,17 +50,56 @@
           <p class="shot-caption">본사 관리자 — 입점사 통계</p>
         </div>
       </div>
-    </section>
+    </div>
 
-    <section class="detail-section">
+    <div class="detail-section">
       <h2>아키텍처</h2>
-      <div class="diagram">
-        다이어그램 자리 — 대/중/소 카테고리 정규화 구조, 본사/입점사 권한 분리(Supabase Auth role),
-        장바구니 비정규화(스냅샷 저장) 구조를 도식화해서 넣을 예정
-      </div>
-    </section>
+      <div class="diagram has-svg">
+        <svg viewBox="0 0 760 300" xmlns="http://www.w3.org/2000/svg">
+          <rect class="box accent" x="20" y="30" width="150" height="56" rx="8"/>
+          <text class="box-label" x="95" y="54" text-anchor="middle">일반 사용자</text>
+          <text class="box-sub" x="95" y="72" text-anchor="middle">상품 조회 · 주문</text>
 
-    <section class="detail-section">
+          <rect class="box accent" x="20" y="120" width="150" height="56" rx="8"/>
+          <text class="box-label" x="95" y="144" text-anchor="middle">본사 관리자</text>
+          <text class="box-sub" x="95" y="162" text-anchor="middle">통계 · 상품 승인</text>
+
+          <rect class="box accent" x="20" y="210" width="150" height="56" rx="8"/>
+          <text class="box-label" x="95" y="234" text-anchor="middle">입점사 관리자</text>
+          <text class="box-sub" x="95" y="252" text-anchor="middle">본인 브랜드 관리</text>
+
+          <rect class="box" x="290" y="120" width="150" height="56" rx="8"/>
+          <text class="box-label" x="365" y="144" text-anchor="middle">React App</text>
+          <text class="box-sub" x="365" y="162" text-anchor="middle">role 기반 라우팅</text>
+
+          <rect class="box" x="560" y="40" width="180" height="96" rx="8"/>
+          <text class="box-label" x="650" y="66" text-anchor="middle">Supabase</text>
+          <text class="box-sub" x="650" y="85" text-anchor="middle">Auth (role 구분)</text>
+          <text class="box-sub" x="650" y="101" text-anchor="middle">DB: products · orders</text>
+          <text class="box-sub" x="650" y="117" text-anchor="middle">categories (3단계 정규화)</text>
+
+          <rect class="box" x="560" y="165" width="180" height="56" rx="8"/>
+          <text class="box-label" x="650" y="189" text-anchor="middle">Toss Payments</text>
+          <text class="box-sub" x="650" y="207" text-anchor="middle">결제 요청 · 승인</text>
+
+          <path class="arrow" d="M170,58 L250,58 L250,148 L290,148"/>
+          <polygon class="arrowhead" points="290,148 280,143 280,153"/>
+          <path class="arrow hi" d="M170,148 L290,148"/>
+          <polygon class="arrowhead hi" points="290,148 280,143 280,153"/>
+          <path class="arrow" d="M170,238 L250,238 L250,148 L280,148"/>
+          <polygon class="arrowhead" points="280,148 270,143 270,153"/>
+
+          <path class="arrow" d="M440,138 L560,90"/>
+          <polygon class="arrowhead" points="560,90 548,88 552,98"/>
+          <path class="arrow" d="M440,158 L560,193"/>
+          <polygon class="arrowhead" points="560,193 548,189 551,198"/>
+
+          <text class="flow-label" x="230" y="105" text-anchor="middle">role 기반 접근 제어</text>
+        </svg>
+      </div>
+    </div>
+
+    <div class="detail-section">
       <h2>문제와 해결</h2>
       <div class="problem-solution">
         <div class="ps-row">
@@ -131,7 +170,7 @@
           </div>
         </div>
       </div>
-    </section>
+    </div>
 
     <div class="detail-links">
       <a href="https://github.com/Pink-Princesses-and-Exception-Busters/Department-Store" target="_blank" rel="noopener">GitHub 저장소 →</a>
