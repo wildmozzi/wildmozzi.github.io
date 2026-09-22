@@ -9,6 +9,18 @@
   --spot-x:50%;
   --spot-y:40%;
 }
+/* light theme: same variable set, so every rule elsewhere in this file
+   (including the diagram SVGs, which read these vars for fill/stroke)
+   re-themes automatically — nothing else needs a light-mode override */
+:root[data-theme="light"]{
+  --bg:#ffffff;
+  --bg-soft:#f2f2f4;
+  --fg:#16161a;
+  --fg-dim:#5c5c66;
+  --accent:#0f9d63;
+  --accent-dim:#bfe8d3;
+  --line:#e2e2e7;
+}
 *{box-sizing:border-box; margin:0; padding:0;}
 html, body{height:100%; overflow-x:hidden;}
 body{
@@ -313,3 +325,17 @@ div.shot{aspect-ratio:16/10;}
   padding:.7rem 1.4rem; transition:border-color .2s, color .2s;
 }
 .detail-links a:hover{border-color:var(--accent); color:var(--accent);}
+
+/* theme toggle — fixed top-right on every page (index's side dot-nav sits
+   at right:2.5rem/vertically centered, and each detail page's back-link
+   sits top-left, so this corner is free on all four pages) */
+.theme-toggle{
+  position:fixed; top:1.6rem; right:1.6rem; z-index:1000;
+  width:38px; height:38px; border-radius:50%; cursor:pointer;
+  display:flex; align-items:center; justify-content:center;
+  background:var(--bg-soft); border:1px solid var(--line); color:var(--fg);
+  font-size:1rem; line-height:1;
+  transition:border-color .2s, background .2s, transform .2s;
+}
+.theme-toggle:hover{border-color:var(--accent); transform:translateY(-2px);}
+@media (max-width:800px){ .theme-toggle{top:1rem; right:1rem;} }

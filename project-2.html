@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+<script>
+(function(){
+  var t = localStorage.getItem('theme') ||
+    (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+  document.documentElement.setAttribute('data-theme', t);
+})();
+</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>백화점 쇼핑몰 웹 — 신지웅</title>
@@ -8,9 +15,13 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<script src="theme.js" defer></script>
 <script src="carousel.js" defer></script>
 </head>
 <body class="detail-body">
+
+  <button class="theme-toggle" aria-label="라이트 모드로 전환">☀️</button>
+
 
   <div class="detail-wrap">
     <a href="index.html#projects" class="back-link">&larr; 프로젝트 목록으로</a>

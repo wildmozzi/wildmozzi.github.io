@@ -32,7 +32,7 @@ if (isFinePointer) {
   }
   animateRing();
 
-  document.querySelectorAll('a, .card').forEach(el => {
+  document.querySelectorAll('a, .card, .theme-toggle').forEach(el => {
     el.addEventListener('mouseenter', () => ring.classList.add('hover'));
     el.addEventListener('mouseleave', () => ring.classList.remove('hover'));
   });
